@@ -1,0 +1,23 @@
+# Duckling para todos los bots
+
+version: "3.8"
+
+networks:
+  public:
+
+
+volumes:
+  rasa_data:
+  rasa_actions_data:
+  db_data:
+
+
+services:
+  duckling:
+    image: ${DUCKLING_IMAGE}
+    deploy:
+      placement:
+        constraints:
+          - node.labels.botfront.${NODE_LABEL} == 1 
+    networks:
+      - public
